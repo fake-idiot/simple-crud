@@ -20,6 +20,16 @@ defmodule TaskCrudWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/", TaskCrudWeb do
+    pipe_through :api
+
+    get "/tasks", TaskController, :index
+    post "/task/new", TaskController, :create
+    patch "/task/:id", TaskController, :update
+    delete "/task/:id", TaskController, :delete
+    get "/task/:id", TaskController, :show
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TaskCrudWeb do
   #   pipe_through :api
